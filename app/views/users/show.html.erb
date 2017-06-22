@@ -1,0 +1,13 @@
+<h1> <%= @user.nickname %> </h1>
+<%= @user.name %>
+<br> From <%= @user.location %>
+<br>
+<br> Has <%= @user.drone_model %>
+<br>
+<br>
+Interested in: 
+  <% @user.tags.each do |tag| %>
+    | <%= tag.name %> | 
+  <% end %>
+
+
