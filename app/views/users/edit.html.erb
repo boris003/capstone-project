@@ -9,17 +9,15 @@
   <% end %>
 </div>
 
-  
-<%=  @current_user.id %>
 
 <%= form_tag "/users/#{(@user.id)}", method: :patch do %>
-  Nickname: <input type="text" name="nickname" value="<%= @user.nickname %>"> <br>
+  Nickname: <%= @user.nickname %> <br>
   Name: <input type="text" name="name" value="<%= @user.name %>"> <br>
   Email: <input type="email" name="email" value="<%= @user.email %>"> <br>
-  Date of Birth: <input type="date" name="date_of_birth" value="<%= @user.nickname %>"> <br>
-  Location: <input type="text" name="location" value="<%= @user.nickname %>"> <br>
-  Drone Model: <input type="text" name="drone_model" value="<%= @user.nickname %>"> <br>
-  About me: <textarea type="message" rows="5" cols="30" name="bio" value="<%= @user.nickname %>"> </textarea> <br>
+  Date of Birth: <input type="date" name="date_of_birth" value="<%= @user.date_of_birth %>"> <br>
+  Location: <input type="text" name="location" value="<%= @user.location %>"> <br>
+  Drone Model: <input type="text" name="drone_model" value="<%= @user.drone_model %>"> <br>
+  About me: <textarea type="message" rows="5" cols="30" name="bio" value="<%= @user.bio %>"> <%= @user.bio %> </textarea> <br>
   <br> Change password: <br>
   Password: <input type="password" name="password"> <br>
   Confirm Password: <input type="password" name="password_confirmation"> <br>

@@ -11,11 +11,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @current_user = current_user
+    @current_user = User.find_by(id: session[:user_id])
     @user = User.find(params[:id])
-    if @current_user.nil?
+    if @current_user == nil
       redirect_to "/"
-    elsif @current_user.id == params[:id]
+    elsif @current_user.id == @user.id
       render "edit.html.erb"
     else
       redirect_to "/"
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(
-      nickname: params[:nickname],
       name: params[:name],
       email: params[:email],
       password: params[:password],
@@ -63,6 +62,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @current_user = User.find_by(id: session[:user_id])
     @user = User.find(params[:id])
     render "show.html.erb"
     
