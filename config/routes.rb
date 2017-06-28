@@ -13,7 +13,14 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
-  get '/post/:id' => 'post#'
+  get '/myfeed' => 'posts#myfeed'
+  get '/discover' => 'posts#discover'
+  get '/posts/new' => 'posts#new'
+  post '/posts' => 'posts#create'
+  get '/posts/:id' => 'posts#show'
+  get '/posts/:id/edit' => 'posts#edit'
+  patch '/posts/:id' => 'posts#update'
+  delete '/posts/:id' => 'posts#destroy'
 
 
 

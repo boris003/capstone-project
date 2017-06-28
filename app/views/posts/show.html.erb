@@ -1,0 +1,18 @@
+<h1> <%= @post.user.nickname %> </h1>
+<h2><li>Year: <%= @post.title %></li></h2>
+<h2><li>Engine: <%= @post.description %></li></h2>
+<h2><li>Tags: 
+  <% @post.tags.each do |tag|%>
+    - <%= tag.name %> - 
+  <% end %>  
+</li></h2>
+
+
+
+<p>   
+<p>
+=============================
+<p>
+
+<p>   
+<div class="button"> <a href="/"> Back to My Feed </a> </div>
