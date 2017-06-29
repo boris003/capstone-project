@@ -20,4 +20,12 @@ class PostsController < ApplicationController
     render "show.html.erb"
   end
 
+  def myfeed
+    render "myfeed.html.erb"
+  end
+
+  def discover
+    render "discover.html.erb"
+  end
+
 end

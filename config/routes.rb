@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/' => 'users#index'
+  get '/' => 'posts#myfeed'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
