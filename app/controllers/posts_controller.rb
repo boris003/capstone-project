@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     @new_post = Post.create(
       title: params[:title],
       description: params[:description],
-      user_id: @current_user.id
+      user_id: current_user.id
       )
     flash[:success] = "Posted!"
     redirect_to "/"
