@@ -13,14 +13,11 @@ class UsersController < ApplicationController
   def create
     user = User.new(
       nickname: params[:nickname],
-      name: params[:name],
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
       date_of_birth: params[:date_of_birth],
-      location: params[:location],
-      drone_model: params[:drone_model],
-      bio: params[:bio]
+      location: params[:location]
     )
     if user.save
       session[:user_id] = user.id

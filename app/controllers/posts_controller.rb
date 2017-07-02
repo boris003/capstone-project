@@ -5,13 +5,15 @@ class PostsController < ApplicationController
   end
 
   def create
-    @new_post = Post.create(
+    @new_post = Post.new(
       title: params[:title],
       description: params[:description],
       user_id: current_user.id
       )
-    flash[:success] = "Posted!"
-    redirect_to "/"
+    if @new_post.save
+      flash[:success] = "Posted!"
+      redirect_to "/posts/#{@new_post.id}"
+    end
   end
 
   def show
