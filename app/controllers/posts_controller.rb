@@ -21,11 +21,21 @@ class PostsController < ApplicationController
   end
 
   def myfeed
+    @posts = Post.all
     render "myfeed.html.erb"
   end
 
   def discover
+    @posts = Post.all
     render "discover.html.erb"
+  end
+
+  def edit
+    
+  end
+
+  def update
+    
   end
 
 end

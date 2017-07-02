@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
   get '/users/:id/edit' => 'users#edit'
   patch '/users/:id' => 'users#update'
-  get 'users/:id/show' => 'users#show'
+  get 'users/:id' => 'users#show'
 
 
   get '/login' => 'sessions#new'

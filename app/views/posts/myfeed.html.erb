@@ -2,3 +2,10 @@
 
 
 <img src="http://bbd.construction/wp-content/uploads/2015/09/slide2-man.png" height="595"> </img>
+
+
+<% @posts.each do |post| %>
+  <p> <%= post.title %> </p>
+  <p> <%= post.description %> </p>
+  <br>
+<% end %>
