@@ -48,11 +48,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    car = Car.find(params[:id])
-    car.destroy
-    # render "destroy.html.erb"
-    flash[:danger] = "#{car.make} #{car.model} is deleted!"
-    redirect_to "/cars"
+    post = Post.find(params[:id])
+    post.destroy
+    flash[:danger] = "Your post is deleted!"
+    redirect_to "/"
   end
 
 end

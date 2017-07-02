@@ -20,5 +20,8 @@
   
   <input type="submit" value="Update post">
 
-
 <% end %>
+
+  <br>
+  <%= button_to "Delet Post", {:controller => :posts,
+      :action => 'destroy', :id => @post.id }, :method => :delete %>
