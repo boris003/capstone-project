@@ -1,11 +1,10 @@
-<h1> <%= @post.user.nickname %> </h1>
-<h2><li>Year: <%= @post.title %></li></h2>
-<h2><li>Engine: <%= @post.description %></li></h2>
-<h2><li>Tags: 
-  <% @post.tags.each do |tag|%>
-    - <%= tag.name %> - 
-  <% end %>  
-</li></h2>
+<h3> <%= @post.user.nickname %> </h3>
+<h1>Title: <%= @post.title %> </h1>
+<h2>Description: <%= @post.description %> </h2>
+Tags: 
+<% @post.tags.each do |tag|%>
+  <li> <%= tag.name %> </li>
+<% end %>  
 
 
 

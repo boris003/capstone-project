@@ -1,0 +1,23 @@
+<div>
+  <% if @post && @post.errors.any? %>
+    <h3><%= @post.errors.count %> errors prohibited this product from being saved</h3>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+
+<%= form_tag "/posts/#{(@post.id)}", method: :patch do %>
+  <div>
+    Make <input type="text" name="title" value="<%= @post.title %>">
+  </div>
+  <div>
+    Model <input type="text" name="description" value="<%= @post.description %>">
+  </div>
+  
+  <input type="submit" value="Update post">
+
+<% end %>

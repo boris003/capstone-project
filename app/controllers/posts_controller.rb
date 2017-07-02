@@ -31,11 +31,26 @@ class PostsController < ApplicationController
   end
 
   def edit
-    
+      @post = Post.find(params[:id])
+      render "edit.html.erb"
   end
 
   def update
-    
+    @post = Post.find(params[:id])
+    @post.update(
+      title: params[:title],
+      description: params[:description]
+      )
+    flash[:info] = "You post has been updated!"
+    redirect_to "/posts/#{@post.id}"
+  end
+
+  def destroy
+    car = Car.find(params[:id])
+    car.destroy
+    # render "destroy.html.erb"
+    flash[:danger] = "#{car.make} #{car.model} is deleted!"
+    redirect_to "/cars"
   end
 
 end
