@@ -7,10 +7,13 @@ class UsersController < ApplicationController
 
 
   def new
+    @tags = Tag.all
+    @tag_ids = []
     render 'new.html.erb'
   end
 
   def create
+    @tags = Tag.all
     user = User.new(
       nickname: params[:nickname],
       email: params[:email],
@@ -18,7 +21,11 @@ class UsersController < ApplicationController
       password_confirmation: params[:password_confirmation],
       date_of_birth: params[:date_of_birth],
       location: params[:location]
-    )
+      )
+    UserTag.create(
+      user_id: user.id,
+      tag_id: params[:tag_id]
+      )
     if user.save
       session[:user_id] = user.id
       flash[:success] = 'Successfully created account!'
