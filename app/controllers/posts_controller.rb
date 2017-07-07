@@ -1,7 +1,13 @@
 class PostsController < ApplicationController
 
   def new
+    @current_user = User.find_by(id: session[:user_id])
+    if @current_user == nil
+      redirect_to "/getout"
+      flash[:warning] = 'What a hell are you doing? Want to create a post without logging in?! Get a hell out of my web site!'
+    else
       render "new.html.erb"
+    end
   end
 
   def create
@@ -52,6 +58,19 @@ class PostsController < ApplicationController
     post.destroy
     flash[:danger] = "Your post is deleted!"
     redirect_to "/"
+  end
+
+    # = = = Error pages! = = = 
+  def getout
+    render "getout.html.erb"
+  end
+
+  def didntitellyou
+    render "didntitellyou.html.erb"    
+  end
+
+  def ohgod
+    render 'ohgod.html.erb'    
   end
 
 end

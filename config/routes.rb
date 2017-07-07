@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   patch '/posts/:id' => 'posts#update'
   delete '/posts/:id' => 'posts#destroy'
 
+  get '/getout' => 'posts#getout'
+  get '/didntitellyou' => 'posts#didntitellyou'
+  get 'ohgod' => 'posts#ohgod'
+
   
 
 
