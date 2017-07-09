@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def new
     @tags = Tag.all
-    @tag_ids = []
+    @index = 0
     render 'new.html.erb'
   end
 
@@ -22,12 +22,15 @@ class UsersController < ApplicationController
       date_of_birth: params[:date_of_birth],
       location: params[:location]
       )
-    UserTag.create(
-      user_id: user.id,
-      tag_id: params[:tag_id]
-      )
+
     if user.save
       session[:user_id] = user.id
+      params[:tag_ids].each do |tag_id|
+        UserTag.create(
+          user_id: user.id,
+          tag_id: tag_id
+          )
+      end
       flash[:success] = 'Successfully created account!'
       redirect_to '/'
     else

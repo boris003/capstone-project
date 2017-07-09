@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:success] = 'Get Out! Yes! Good! And never come back!'
-    redirect_to '/login'
+    redirect_to '/'
   end
 end
