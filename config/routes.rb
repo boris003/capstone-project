@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  get '/posts' => 'posts#index'
   get '/myfeed' => 'posts#myfeed'
   get '/discover' => 'posts#discover'
   get '/posts/new' => 'posts#new'

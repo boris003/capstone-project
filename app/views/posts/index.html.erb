@@ -1,0 +1,26 @@
+<h3> Example of post </h3>
+<div class="post">
+  <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Beautiful lake Tahoe</h3>
+      </div>
+
+      <div class="panel-body">
+        <img class="postImage" src="https://pp.userapi.com/c638228/v638228523/2ba24/PCByh0284vU.jpg">
+        <br>Took it during trip with friends in January 2017
+      </div>
+  </div>
+</div>
+
+<br>
+
+<% @posts.each do |post| %>
+  <div class="post">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= post.title %></h3>
+        </div>
+        <div class="panel-body"><%= post.description %> </div>
+    </div>
+  </div>
+<% end %>

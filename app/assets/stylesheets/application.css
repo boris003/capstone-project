@@ -20,3 +20,9 @@
 body {
   background-image: url("concrete-texture.png");
 }
+
+.postImage{
+  width: 1250px;
+  text-align: center;
+}
+
