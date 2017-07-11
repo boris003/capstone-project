@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   def new
+    @tags = Tag.all
     @current_user = User.find_by(id: session[:user_id])
     if @current_user == nil
       redirect_to "/getout"
@@ -11,14 +12,20 @@ class PostsController < ApplicationController
   end
 
   def create
-    @new_post = Post.new(
+    post = Post.new(
       title: params[:title],
       description: params[:description],
       user_id: current_user.id
       )
-    if @new_post.save
+    if post.save
+      params[:tag_ids].each do |tag_id|
+        PostTag.create(
+          post_id: post.id,
+          tag_id: tag_id
+          )
+      end
       flash[:success] = "Posted!"
-      redirect_to "/posts/#{@new_post.id}"
+      redirect_to "/posts/#{post.id}"
     end
   end
 

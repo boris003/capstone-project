@@ -22,7 +22,6 @@ class UsersController < ApplicationController
       date_of_birth: params[:date_of_birth],
       location: params[:location]
       )
-
     if user.save
       session[:user_id] = user.id
       params[:tag_ids].each do |tag_id|
@@ -40,6 +39,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @tags = Tag.all
     @current_user = User.find_by(id: session[:user_id])
     @user = User.find(params[:id])
     if @current_user == nil
@@ -63,6 +63,7 @@ class UsersController < ApplicationController
       drone_model: params[:drone_model],
       bio: params[:bio]
       )
+    
     flash[:info] = "Information is updated!"
     redirect_to "/"
     # redirect_to "/users/#{@user.id}"

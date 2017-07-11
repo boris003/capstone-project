@@ -1,14 +1,15 @@
-<h3> <%= @post.user.nickname %> </h3>
-<h1>Title: <%= @post.title %> </h1>
-<h2>Description: <%= @post.description %> </h2>
-Tags: 
-<% @post.tags.each do |tag|%>
-  <li> <%= tag.name %> </li>
-<% end %>  
+<div class="post"><h3> <%= @post.user.nickname %> </h3>
+  <h1>Title: <%= @post.title %> </h1>
+  <h2>Description: <%= @post.description %> </h2>
+  Tags: 
+  <% @post.tags.each do |tag|%>
+    <li> <%= tag.name %> </li>
+  <% end %>  
 
-<div class="button"> <a href="/posts/<%= @post.id %>/edit"> Edit Post </a> </div>
+  <div class="button"> <a href="/posts/<%= @post.id %>/edit"> Edit Post </a> </div>
 
-<br>
-=============================
-<br>
-<div class="button"> <a href="/"> Back to My Feed </a> </div>
+  <br>
+  =============================
+  <br>
+  <div class="button"> <a href="/"> Back to My Feed </a> </div>
+</div>

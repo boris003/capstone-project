@@ -7,7 +7,7 @@
         
       <% end %>
     </ul>
-  <% end %>
+  <% end %>1
 </div>
 
 <%= form_tag "/posts", method: :post do %>
@@ -17,7 +17,12 @@
   <div> 
     Description <input type="text" name="description">
   </div>
-  <input type="submit" value="Post!">
+  <% @tags.each do |tag| %>
+    <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
+    <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
+  <% end %>
+  <br>
+  <button type="submit">Post it!</button>
 
 
 <% end %>

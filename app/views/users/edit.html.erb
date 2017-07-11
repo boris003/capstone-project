@@ -11,17 +11,32 @@
 
 
 <%= form_tag "/users/#{(@user.id)}", method: :patch do %>
-  Nickname: <%= @user.nickname %> <br>
-  Name: <input type="text" name="name" value="<%= @user.name %>"> <br>
-  Email: <input type="email" name="email" value="<%= @user.email %>"> <br>
-  Date of Birth: <input type="date" name="date_of_birth" value="<%= @user.date_of_birth %>"> <br>
-  Location: <input type="text" name="location" value="<%= @user.location %>"> <br>
-  Drone Model: <input type="text" name="drone_model" value="<%= @user.drone_model %>"> <br>
-  About me: <textarea type="message" rows="5" cols="30" name="bio" value="<%= @user.bio %>"> <%= @user.bio %> </textarea> <br>
-  <br> Change password: <br>
-  Password: <input type="password" name="password"> <br>
-  Confirm Password: <input type="password" name="password_confirmation"> <br>
+  <legend> <%= @user.nickname %></legend>
+  <label for="mail">Email:</label>
+  <input type="email" id="mail" name="email" value="<%= @user.email %>">
+  <label for="date_of_birth">Date of Birth:</label>
+  <input type="date" id="date_of_birth" name="date_of_birth" value="<%= @user.date_of_birth %>">
+  <label for="location">Location:</label>
+  <input type="text" id="location" name="location" value="<%= @user.location %>">
+  <label for="drone_model">Drone Model:</label>
+  <input type="text" id="drone_model" name="drone_model" value="<%= @user.drone_model %>">
+  <label for="bio">About me:</label>
+  <input type="text" id="bio" name="bio" value="<%= @user.bio %>">
+  <label>Interests:</label>
+  <p>Please check things that you are excited about, we will try to show you content based on your interests:</p>
+  <% @tags.each do |tag| %>
+    <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
+    <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
+  <% end %>
 
-  <input type="submit" value="Save changes">
+  <div class="changePassword">
+  <legend> Change password: </legend>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password">
+
+  <label for="password">Confirm Password:</label>
+  <input type="password" id="password" name="password_confirmation">
+  </div>
+  <button type="submit">Save Changes</button>
 
 <% end %>

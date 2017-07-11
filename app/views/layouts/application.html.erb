@@ -17,22 +17,29 @@
           <img src="https://asset1.djicdn.com/images/360/phantom-4/draggable_360_v2/0_0.png" width="80" height="40" class="d-inline-block align-top" alt="">
           </a>
           <a class="navbar-brand" href="/">DroneEye</a>
-          
         </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/didntitellyou">Don't Click!</a></li>
-          <li><a href="/myfeed">My Feed</a></li>
-          <li><a href="/discover">Discover</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-            <li><a href="/users/<%= current_user.id %>/edit"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
-            <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/didntitellyou">Don't Click!</a></li>
+              <li><a href="/myfeed">My Feed</a></li>
+              <li><a href="/discover">Discover</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-center">
+              <li><a href="/posts/new">New Post</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/users/<%= current_user.id %>/edit"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+              <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
           <% else %>
-            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/didntitellyou">Don't Click!</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
           <% end %>
-        </ul>
       </div>
     </nav>
 
