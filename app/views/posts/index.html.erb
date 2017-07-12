@@ -2,7 +2,18 @@
 <div class="post">
   <div class="panel panel-success">
       <div class="panel-heading">
-        <h3 class="panel-title">Beautiful lake Tahoe</h3>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-10">
+              <h3 class="panel-title">Beautiful lake Tahoe</h3>
+            </div>
+            <div class="col-sm-2">
+              <h3 class="panel-title"> BorisTheBlade</h3>
+            </div>
+          </div> 
+        </div>
+<!--         <h3 class="panel-title">Beautiful lake Tahoe</h3>
+        <h3 class="userInPost"> BorisTheBlade </h3> -->
       </div>
 
       <div class="panel-body">
@@ -18,7 +29,14 @@
   <div class="post">
     <div class="panel panel-success">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= post.title %></h3>
+          <div class="row">
+            <div class="col-sm-10">
+              <h3 class="panel-title"><%= post.title %></h3>
+            </div>
+            <div class="col-sm-2">
+              <h3 class="panel-title"> <%= post.user.name %></h3>
+            </div>
+          </div>
         </div>
         <div class="panel-body"><%= post.description %> </div>
     </div>
