@@ -51,6 +51,12 @@ class PostsController < ApplicationController
 
   def edit
       @post = Post.find(params[:id])
+      @tags = Tag.all
+      # @post_tags_ids = []
+      # @post_tags = @post.tags
+      # @post_tags.each do |tag|
+      #   @post_tag_ids << tag.id
+      # end
       render "edit.html.erb"
   end
 
@@ -60,8 +66,16 @@ class PostsController < ApplicationController
       title: params[:title],
       description: params[:description]
       )
+    @post.posttags.destroy_all
+    params[:tag_ids].each do |tag_id|
+      PostTag.create(
+        post_id: post.id,
+        tag_id: tag_id
+        )
+    end
     flash[:info] = "You post has been updated!"
     redirect_to "/posts/#{@post.id}"
+    
   end
 
   def destroy
