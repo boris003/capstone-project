@@ -66,10 +66,10 @@ class PostsController < ApplicationController
       title: params[:title],
       description: params[:description]
       )
-    @post.posttags.destroy_all
+    @post.tags.destroy_all
     params[:tag_ids].each do |tag_id|
       PostTag.create(
-        post_id: post.id,
+        post_id: @post.id,
         tag_id: tag_id
         )
     end
