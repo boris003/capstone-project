@@ -11,11 +11,12 @@
 
 <%= form_tag "/posts/#{(@post.id)}", method: :patch do %>
   <div>
-    Make <input type="text" name="title" value="<%= @post.title %>">
+    Title: <input type="text" name="title" value="<%= @post.title %>">
   </div>
   <div>
-    Model <input type="text" name="description" value="<%= @post.description %>">
+    Description: <input type="text" name="description" value="<%= @post.description %>">
   </div>
+  Tags:<br>
   <% @tags.each do |tag| %>
     <input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
     <label class="light" for="tag_ids[]"><%= tag.name %></label><br>
