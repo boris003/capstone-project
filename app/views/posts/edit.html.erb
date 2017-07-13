@@ -17,10 +17,12 @@
     Description: <input type="text" name="description" value="<%= @post.description %>">
   </div>
   Tags:<br>
+  <%= select_tag :tags, options_from_collection_for_select(@tags, :id, :name, @post.tags.map {|tag| tag.id}), multiple: true%>
+<!-- 
   <% @tags.each do |tag| %>
     <input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
     <label class="light" for="tag_ids[]"><%= tag.name %></label><br>
-  <% end %>
+  <% end %> -->
   <input type="submit" value="Update post">
 
 <% end %>

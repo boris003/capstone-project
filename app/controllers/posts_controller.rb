@@ -75,7 +75,6 @@ class PostsController < ApplicationController
     end
     flash[:info] = "You post has been updated!"
     redirect_to "/posts/#{@post.id}"
-    
   end
 
   def destroy
@@ -84,6 +83,22 @@ class PostsController < ApplicationController
     flash[:danger] = "Your post is deleted!"
     redirect_to "/"
   end
+
+  def newcomment
+    comment = Comment.new(
+      content: params[:content],
+      post_id: params[:post_id],
+      user_id: current_user.id
+      )
+    if comment.save
+      flash[:success] = "Comment sent"
+      redirect_to "/posts/#{params[:post_id]}"
+    end
+  end
+
+
+
+
 
     # = = = Error pages! = = = 
   def getout

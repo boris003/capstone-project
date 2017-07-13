@@ -1,15 +1,18 @@
-<h1> <%= @user.nickname %> </h1>
-<%= @user.name %>
-<br> From <%= @user.location %>
-<br>
-<br> Has <%= @user.drone_model %>
-<br>
-<br>
-Interested in: 
-  <% @user.tags.each do |tag| %>
-    | <%= tag.name %> | 
-  <% end %>
+<div class="userShow">
+  <h1> <%= @user.nickname %> </h1>
+  <%= form_tag "/users/subscribe", method: :post do %>
+    <input type="hidden" name="subscribed_to_id" value=<%="#{@user.id}"%>>
+    <button type="submit">Follow</button>
+  <%end%>
 
-
-
-<%= @current_user.id %>
+  <%= @user.name %>
+  <br> From <%= @user.location %>
+  <br>
+  <br> Has <%= @user.drone_model %>
+  <br>
+  <br>
+  Interested in: 
+    <% @user.tags.each do |tag| %>
+      | <%= tag.name %> | 
+    <% end %>
+</div>

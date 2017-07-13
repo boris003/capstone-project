@@ -73,6 +73,23 @@ class UsersController < ApplicationController
     @current_user = User.find_by(id: session[:user_id])
     @user = User.find(params[:id])
     render "show.html.erb"
-    
   end
+
+  def subscribe   
+    @current_user = User.find_by(id: session[:user_id])
+    subscribtion = Subscription.new(
+      subscriber_id: @current_user.id,
+      subscribed_to_id: params[:subscribed_to_id]
+      )
+    if subscribtion.save
+      flash[:success] = 'Subscribed!'
+      redirect_to "/users/#{params[:subscribed_to_id]}"
+    else
+      flash[:warning] = 'Oops, something went wrong!'
+      redirect_to '/'
+    end
+  end
+
+
+
 end

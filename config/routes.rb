@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/users/:id/edit' => 'users#edit'
   patch '/users/:id' => 'users#update'
   get '/users/:id' => 'users#show'
+  post 'users/subscribe' => 'users#subscribe'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   get '/posts/:id/edit' => 'posts#edit'
   patch '/posts/:id' => 'posts#update'
   delete '/posts/:id' => 'posts#destroy'
+  post '/posts/:id/comment' => 'posts#newcomment'
 
   get '/getout' => 'posts#getout'
   get '/didntitellyou' => 'posts#didntitellyou'
