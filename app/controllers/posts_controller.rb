@@ -40,12 +40,39 @@ class PostsController < ApplicationController
   end
 
   def myfeed
-    @posts = Post.all
+    @current_user = User.find_by(id: session[:user_id])
+    @subscriptions = Subscription.find_by(subscriber_id: @current_user.id)
+    @subscribed_to_ids = []
+    if @subscriptions.is_a?(Array)
+      @subscriptions.each do |subscription|
+        @subscribed_to_ids << subscription.subscribed_to_id
+      end
+    else
+      @subscribed_to_ids << @subscriptions.subscribed_to_id
+    end
+    @posts = []
+    @subscribed_to_ids.each do |userid|
+      @posts << Post.find_by(user_id: userid)
+    end
     render "myfeed.html.erb"
   end
 
   def discover
-    @posts = Post.all
+    @current_user = User.find_by(id: session[:user_id])
+    @user_tags = UserTag.find_by(user_id: @current_user.id)
+    @tag_ids = []
+    if @user_tags.is_a?(Array)
+      @user.tags.each do |usertag|
+        @tag_ids << usertag.tag_id
+      end
+    else
+      @tag_ids << @user_tags.tag_id
+    end
+    @posts = []
+    @tag_ids.each do |tagid|
+      tag = Tag.find_by(id: tagid)
+      @posts = tag.posts
+    end
     render "discover.html.erb"
   end
 
