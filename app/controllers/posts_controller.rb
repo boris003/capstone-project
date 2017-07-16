@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     post = Post.new(
       title: params[:title],
       description: params[:description],
+      image: params[:image],
       user_id: current_user.id
       )
     if post.save
@@ -30,7 +31,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all    
+    @posts = Post.all
   end
 
   def show

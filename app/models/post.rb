@@ -11,7 +11,7 @@ class Post < ApplicationRecord
                     :default_url => "/images/default.png"
 
   validates_attachment :image, :presence => true,
-                       :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },
+                       :content_type => { :content_type => ["image/jpeg", "image/jpeg", "image/png"] },
                        :size => { :in => 0..1000.kilobytes }
 
 end

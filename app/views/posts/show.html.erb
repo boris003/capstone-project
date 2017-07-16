@@ -1,6 +1,7 @@
 <div class="post"><h3> <%= @post.user.nickname %> </h3>
-  <h1>Title: <%= @post.title %> </h1>
-  <h2>Description: <%= @post.description %> </h2>
+  <h1><%= @post.title %> </h1>
+  <h2><%= @post.description %> </h2>
+  <img class="postImage" src= <%= @post.image.url %>>
   Tags: 
   <% @post.tags.each do |tag|%>
     <li> <%= tag.name %> </li>

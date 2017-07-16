@@ -7,16 +7,21 @@
         
       <% end %>
     </ul>
-  <% end %>1
+  <% end %>
 </div>
 
-<%= form_tag "/posts", method: :post do %>
+<%= form_tag "/posts", multipart: true, method: :post do %>
   <div> 
     Title <input type="text" name="title">
   </div>
   <div> 
     Description <input type="text" name="description">
   </div>
+  <div> 
+    Image <input type="file" name="image">
+  </div>
+  <br>
+  Choose tags:
   <% @tags.each do |tag| %>
     <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
     <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
