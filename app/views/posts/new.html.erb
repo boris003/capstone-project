@@ -4,7 +4,6 @@
     <ul>
       <%= @post.errors.full_message.each do |message| %>
         <li><%= message %></li>
-        
       <% end %>
     </ul>
   <% end %>
@@ -19,6 +18,7 @@
   </div>
   <div> 
     Image <input type="file" name="image">
+    *maximum allowed size is 35 mb
   </div>
   <br>
   Choose tags:

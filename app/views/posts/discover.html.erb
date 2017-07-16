@@ -1,8 +1,5 @@
-<h3>Page is under constructions</h3>
-
-
-<img src="http://bbd.construction/wp-content/uploads/2015/09/slide2-man.png" height="595"> </img>
-
+<h4>This is Discover section. Here you can see content suggested to you, based on your tastes and preferences.</h4>
+<br>
 
 <% @posts.each do |post| %>
   <div class="post">
@@ -21,6 +18,7 @@
             </div>
           </div>
         </div>
+        <img class="postImage" src=<%= post.image.url %>>
         <div class="panel-body"><%= post.description %> </div>
         <% post.tags.each do |tag| %>
           <li> <%= tag.name %> </li>
@@ -55,3 +53,6 @@
     </div>
   </div>
 <% end %>
+<form method="get" action="/about">
+    <button type="submit">About</button>
+</form>

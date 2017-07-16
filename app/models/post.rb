@@ -12,6 +12,6 @@ class Post < ApplicationRecord
 
   validates_attachment :image, :presence => true,
                        :content_type => { :content_type => ["image/jpeg", "image/jpeg", "image/png"] },
-                       :size => { :in => 0..1000.kilobytes }
+                       :size => { :in => 0..35000.kilobytes }
 
 end

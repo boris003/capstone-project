@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/' => 'posts#index'
+  get '/' => 'users#landing'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get '/getout' => 'posts#getout'
   get '/didntitellyou' => 'posts#didntitellyou'
   get '/ohgod' => 'posts#ohgod'
+
+  get '/about' => 'users#about'
 
 
 end

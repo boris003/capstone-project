@@ -21,11 +21,12 @@ body {
   background-image: url("concrete-texture.png");
 }
 
+
 .postImage{
-  width: 1250px;
+  width: 1260px;
   text-align: center;
 }
 
-.post {
-  margin-bottom: 30px;
+.terms {
+  padding-bottom: 30px;
 }

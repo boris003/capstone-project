@@ -5,6 +5,9 @@ class UsersController < ApplicationController
     render "index.html.erb"
   end
 
+  def landing
+    render "landing.html.erb"
+  end
 
   def new
     @tags = Tag.all
@@ -88,6 +91,10 @@ class UsersController < ApplicationController
       flash[:warning] = 'Oops, something went wrong!'
       redirect_to '/'
     end
+  end
+
+  def about
+    render "about.html.erb"
   end
 
 

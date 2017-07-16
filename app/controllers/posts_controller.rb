@@ -27,6 +27,9 @@ class PostsController < ApplicationController
       end
       flash[:success] = "Posted!"
       redirect_to "/posts/#{post.id}"
+    else
+      flash[:warning] = post.errors.full_messages
+      redirect_to "/posts/new"
     end
   end
 
@@ -44,18 +47,24 @@ class PostsController < ApplicationController
     @current_user = User.find_by(id: session[:user_id])
     @subscriptions = Subscription.find_by(subscriber_id: @current_user.id)
     @subscribed_to_ids = []
-    if @subscriptions.is_a?(Array)
-      @subscriptions.each do |subscription|
-        @subscribed_to_ids << subscription.subscribed_to_id
+    if @subscriptions    
+      if @subscriptions.is_a?(Array)
+        @subscriptions.each do |subscription|
+          @subscribed_to_ids << subscription.subscribed_to_id
+        end
+      else
+        @subscribed_to_ids << @subscriptions.subscribed_to_id
       end
+      @posts = []
+      @subscribed_to_ids.each do |userid|
+        @posts << Post.find_by(user_id: userid)
+      end
+      render "myfeed.html.erb"
     else
-      @subscribed_to_ids << @subscriptions.subscribed_to_id
+      flash[:warning] = "You are not following anyone yet, let's fix that! Here's some inderesting posts!"
+      redirect_to "/discover"
     end
-    @posts = []
-    @subscribed_to_ids.each do |userid|
-      @posts << Post.find_by(user_id: userid)
-    end
-    render "myfeed.html.erb"
+    
   end
 
   def discover

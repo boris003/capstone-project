@@ -1,30 +1,3 @@
-<h3> Example of post </h3>
-<div class="post">
-  <div class="panel panel-success">
-      <div class="panel-heading">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-10">
-              <h3 class="panel-title">Beautiful lake Tahoe</h3>
-            </div>
-            <div class="col-sm-2">
-              <h3 class="panel-title"> BorisTheBlade</h3>
-            </div>
-          </div> 
-        </div>
-<!--         <h3 class="panel-title">Beautiful lake Tahoe</h3>
-        <h3 class="userInPost"> BorisTheBlade </h3> -->
-      </div>
-
-      <div class="panel-body">
-        <img class="postImage" src="https://pp.userapi.com/c638228/v638228523/2ba24/PCByh0284vU.jpg">
-        <br>Took it during trip with friends in January 2017
-      </div>
-  </div>
-</div>
-
-<br>
-
 <% @posts.each do |post| %>
   <div class="post">
     <div class="panel panel-success">
@@ -42,6 +15,7 @@
             </div>
           </div>
         </div>
+        <img class="postImage" src=<%= post.image.url %>>
         <div class="panel-body"><%= post.description %> </div>
         <% post.tags.each do |tag| %>
           <li> <%= tag.name %> </li>
@@ -76,3 +50,6 @@
     </div>
   </div>
 <% end %>
+<form method="get" action="/about">
+    <button type="submit">About</button>
+</form>
