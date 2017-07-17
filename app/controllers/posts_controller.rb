@@ -133,6 +133,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def vote
+    vote = Vote.new(
+      rating: 1,
+      post_id: params[:post_id],
+      user_id: current_user.id
+      )
+    if comment.save
+      flash[:success] = "Voted!"
+      redirect_to "/posts/#{params[:post_id]}"
+    end
+  end
+
 
 
 
