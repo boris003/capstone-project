@@ -57,7 +57,7 @@ class PostsController < ApplicationController
       end
       @posts = []
       @subscribed_to_ids.each do |userid|
-        @posts << Post.find_by(user_id: userid)
+        @posts << Post.where(user_id: userid)
       end
       render "myfeed.html.erb"
     else

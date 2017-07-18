@@ -75,6 +75,7 @@ class UsersController < ApplicationController
   def show
     @current_user = User.find_by(id: session[:user_id])
     @user = User.find(params[:id])
+    @posts = Post.where(user_id: @user.id)
     render "show.html.erb"
   end
 
