@@ -1,40 +1,42 @@
-<h1>Hi there! Wanna be part of cool society? Let's get you an account!</h1>
-<%= form_tag '/users', method: :post do  %>
-    <div class="terms">
-      <h4>Allright, first, few rules of our community: </h4>
-      <li> No pictures of food or cats. (This is not an instagram! This is very high level premium community. No crap here!)</li>
-      <li> Keep in mind, I do not have time to clean up after you, people! Do not post any inappropriate content here. I'll track you down and chop your fingers off! I have a knife! </li>
-      <li> Do not say anything bad about creator of this web site! I am from Russia, ok? I DO NOT KNOW what democracy is! And I have a knife, remember? </li>
-      <h4>If that make sense and you agree on terms and conditions listed above, please go ahead and provide some information:</h4>
-    </div>
-  <fieldset>
-    <legend><span class="number">1</span>Your basic info</legend>
-    <label for="name">Nickname:</label>
-    <input type="text" id="nickname" name="nickname">
+<div class="margin-up">
+  <h1>Hi there! Wanna be part of cool society? Let's get you an account!</h1>
+  <%= form_tag '/users', method: :post do  %>
+      <div class="terms">
+        <h4>Allright, first, few rules of our community: </h4>
+        <li> No pictures of food or cats. (This is not an instagram! This is very high level premium community. No crap here!)</li>
+        <li> Keep in mind, I do not have time to clean up after you, people! Do not post any inappropriate content here. I'll track you down and chop your fingers off! I have a knife! </li>
+        <li> Do not say anything bad about creator of this web site! I am from Russia, ok? I DO NOT KNOW what democracy is! And I have a knife, remember? </li>
+        <h4>If that make sense and you agree on terms and conditions listed above, please go ahead and provide some information:</h4>
+      </div>
+    <fieldset>
+      <legend><span class="number">1</span>Your basic info</legend>
+      <label for="name">Nickname:</label>
+      <input type="text" id="nickname" name="nickname">
+      
+      <label for="mail">Email:</label>
+      <input type="email" id="mail" name="email">
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+
+      <label for="password">Confirm Password:</label>
+      <input type="password" id="password" name="password_confirmation">
+    </fieldset>
     
-    <label for="mail">Email:</label>
-    <input type="email" id="mail" name="email">
+    <fieldset>
+      <legend><span class="number">2</span>Your profile</legend>
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location">
     
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password">
+      <label>Interests:</label>
+      <p>Please check things that you are excited about, we will try to show you content based on your interests:</p>
+      <% @tags.each do |tag| %>
+        <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
+        <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
+      <% end %>
+    </fieldset>
 
-    <label for="password">Confirm Password:</label>
-    <input type="password" id="password" name="password_confirmation">
-  </fieldset>
-  
-  <fieldset>
-    <legend><span class="number">2</span>Your profile</legend>
-    <label for="location">Location:</label>
-    <input type="text" id="location" name="location">
-  
-    <label>Interests:</label>
-    <p>Please check things that you are excited about, we will try to show you content based on your interests:</p>
-    <% @tags.each do |tag| %>
-      <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
-      <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
-    <% end %>
-  </fieldset>
+    <button class="signup-button" type="submit">Sign Up</button>
 
-  <button type="submit">Sign Up</button>
-
-<% end %>
+  <% end %>
+</div>

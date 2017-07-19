@@ -11,6 +11,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def landing
+    render "landing.html.erb"
+    
+  end
+
   def create
     post = Post.new(
       title: params[:title],

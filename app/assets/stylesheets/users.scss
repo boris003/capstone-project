@@ -9,6 +9,16 @@
   box-sizing: border-box;
 }
 
+.signup-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
 .about {
   margin-left: 100px;
   margin-bottom: 30px;
@@ -30,11 +40,12 @@ body {
   margin: 15px;
 }
 
+.follow-button {
+  float: right;
+}
+
 form {
-  max-width: 300px;
   margin: 10px auto;
-  padding: 10px 20px;
-  background: #f4f7f8;
   border-radius: 8px;
 }
 
