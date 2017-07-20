@@ -1,6 +1,6 @@
 <div class="margin-up">
   <h1>Hi there! Wanna be part of cool society? Let's get you an account!</h1>
-  <%= form_tag '/users', multipart: true, method: :post do  %>
+  <%= form_tag '/users', method: :post do  %>
       <div class="terms">
         <h4>Allright, first, few rules of our community: </h4>
         <li> No pictures of food or cats. (This is not an instagram! This is very high level premium community. No crap here!)</li>
@@ -29,11 +29,11 @@
       <input type="text" id="location" name="location">
     
       <label>Interests:</label>
-      <p>Please check things that you are excited about, we will try to show you content based on your interests:</p>
-      <% @tags.each do |tag| %>
-        <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
-        <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
-      <% end %>
+        <p>Please check things that you are excited about, we will try to show you content based on your interests:</p>
+        <% @tags.each do |tag| %>
+          <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
+          <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
+        <% end %>
     </fieldset>
 
     <button class="signup-button" type="submit">Sign Up</button>
