@@ -74,14 +74,14 @@ class PostsController < ApplicationController
 
   def discover
     @current_user = User.find_by(id: session[:user_id])
-    @user_tags = UserTag.find_by(user_id: @current_user.id)
+    @user_tags = UserTag.where(user_id: @current_user.id)
     @tag_ids = []
     if @user_tags.is_a?(Array)
       @user.tags.each do |usertag|
         @tag_ids << usertag.tag_id
       end
     else
-      @tag_ids << @user_tags.tag_id
+      @tag_ids = @user_tags.tag_id
     end
     @posts = []
     @tag_ids.each do |tagid|

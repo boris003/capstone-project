@@ -1,6 +1,6 @@
 <div class="margin-up">
   <h1>Hi there! Wanna be part of cool society? Let's get you an account!</h1>
-  <%= form_tag '/users', method: :post do  %>
+  <%= form_tag '/users', multipart: true, method: :post do  %>
       <div class="terms">
         <h4>Allright, first, few rules of our community: </h4>
         <li> No pictures of food or cats. (This is not an instagram! This is very high level premium community. No crap here!)</li>
