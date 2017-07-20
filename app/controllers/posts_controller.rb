@@ -24,12 +24,10 @@ class PostsController < ApplicationController
       user_id: current_user.id
       )
     if post.save
-      params[:tag_ids].each do |tag_id|
         PostTag.create(
           post_id: post.id,
-          tag_id: tag_id
+          tag_id: 1
           )
-      end
       flash[:success] = "Posted!"
       redirect_to "/posts/#{post.id}"
     else
@@ -76,8 +74,8 @@ class PostsController < ApplicationController
     @current_user = User.find_by(id: session[:user_id])
     @user_tags = UserTag.where(user_id: @current_user.id)
     @tag_ids = []
-    if @user_tags.is_a?(Array)
-      @user.tags.each do |usertag|
+    if @user_tags.length > 1
+      @user_tags.each do |usertag|
         @tag_ids << usertag.tag_id
       end
     else

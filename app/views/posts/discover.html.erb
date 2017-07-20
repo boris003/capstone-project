@@ -1,9 +1,6 @@
 <div class="margin-up">
   <h4>This is Discover section. Here you can see content suggested to you, based on your tastes and preferences.</h4>
   <br>
-  <%= @user_tags.each do |tag| %>
-    <%= tag.name %>
-  <% end %>
   <% @posts.each do |post| %>
     <section>
       <div class="container">
