@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = 'You are in!'
+      # flash[:success] = 'You are in!'
       redirect_to '/'
     else
       flash[:warning] = 'Wrong password! Dont you f*ck around with me!'
@@ -19,5 +19,10 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     flash[:success] = 'Get Out! Yes! Good! And never come back!'
     redirect_to '/'
+  end
+
+  def landing
+    render "landing.html.erb"
+    
   end
 end

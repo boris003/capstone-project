@@ -11,6 +11,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def landing
+    render "landing.html.erb"
+    
+  end
+
   def create
     post = Post.new(
       title: params[:title],
@@ -19,12 +24,10 @@ class PostsController < ApplicationController
       user_id: current_user.id
       )
     if post.save
-      params[:tag_ids].each do |tag_id|
         PostTag.create(
           post_id: post.id,
-          tag_id: tag_id
+          tag_id: 1
           )
-      end
       flash[:success] = "Posted!"
       redirect_to "/posts/#{post.id}"
     else
@@ -57,7 +60,7 @@ class PostsController < ApplicationController
       end
       @posts = []
       @subscribed_to_ids.each do |userid|
-        @posts << Post.find_by(user_id: userid)
+        @posts << Post.where(user_id: userid)
       end
       render "myfeed.html.erb"
     else
@@ -69,14 +72,14 @@ class PostsController < ApplicationController
 
   def discover
     @current_user = User.find_by(id: session[:user_id])
-    @user_tags = UserTag.find_by(user_id: @current_user.id)
+    @user_tags = UserTag.where(user_id: @current_user.id)
     @tag_ids = []
-    if @user_tags.is_a?(Array)
-      @user.tags.each do |usertag|
+    if @user_tags.length > 1
+      @user_tags.each do |usertag|
         @tag_ids << usertag.tag_id
       end
     else
-      @tag_ids << @user_tags.tag_id
+      @tag_ids = @user_tags.tag_id
     end
     @posts = []
     @tag_ids.each do |tagid|
@@ -129,6 +132,18 @@ class PostsController < ApplicationController
       )
     if comment.save
       flash[:success] = "Comment sent"
+      redirect_to "/posts/#{params[:post_id]}"
+    end
+  end
+
+  def vote
+    vote = Vote.new(
+      rating: 1,
+      post_id: params[:post_id],
+      user_id: current_user.id
+      )
+    if comment.save
+      flash[:success] = "Voted!"
       redirect_to "/posts/#{params[:post_id]}"
     end
   end

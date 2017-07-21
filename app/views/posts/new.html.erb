@@ -1,35 +1,36 @@
-<div>
-  <% if @post && @post.errors.any? %>
-    <h3> <%= @post.error.count %> errors prohibited this post from being saved </h3>
-    <ul>
-      <%= @post.errors.full_message.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<div class="margin-up">
+  <div>
+    <% if @post && @post.errors.any? %>
+      <h3> <%= @post.error.count %> errors prohibited this post from being saved </h3>
+      <ul>
+        <%= @post.errors.full_message.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <%= form_tag "/posts", multipart: true, method: :post do %>
+    <div> 
+      Title <input type="text" name="title">
+    </div>
+    <div> 
+      Description <input type="text" name="description">
+    </div>
+    <div> 
+      Image <input type="file" name="image">
+      *maximum allowed size is 35 mb
+    </div>
+    <br>
+    Choose tags:
+    <% @tags.each do |tag| %>
+      <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
+      <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
+    <% end %>
+    <br>
+    <button class="signup-button" type="submit">Post it!</button>
+
+
   <% end %>
 </div>
-
-<%= form_tag "/posts", multipart: true, method: :post do %>
-  <div> 
-    Title <input type="text" name="title">
-  </div>
-  <div> 
-    Description <input type="text" name="description">
-  </div>
-  <div> 
-    Image <input type="file" name="image">
-    *maximum allowed size is 35 mb
-  </div>
-  <br>
-  Choose tags:
-  <% @tags.each do |tag| %>
-    <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
-    <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
-  <% end %>
-  <br>
-  <button type="submit">Post it!</button>
-
-
-<% end %>
-
 

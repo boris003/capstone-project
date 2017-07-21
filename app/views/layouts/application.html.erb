@@ -1,55 +1,370 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>DroneEye project</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="description" content="" />
+    <meta name="Author" content="Boris Danilin" />
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+    <!-- WEB FONTS : use %7C instead of | (pipe) -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
+
+    <!-- CORE CSS -->
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- REVOLUTION SLIDER -->
+    <link href="/plugins/slider.revolution.v5/css/pack.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/slider.revolution.v5/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- THEME CSS -->
+    <link href="/css/essentials.css" rel="stylesheet" type="text/css" />
+    <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- PAGE LEVEL SCRIPTS -->
+    <link href="/css/color_scheme/blue.css" rel="stylesheet" type="text/css" />
+    <link href="/css/header-1.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body>
+  <body class="smoothscroll enable-animation">
+    <!--
+      AVAILABLE BODY CLASSES:
+      
+      smoothscroll      = create a browser smooth scroll
+      enable-animation    = enable WOW animations
+    -->
 
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">
-          <img src="https://asset1.djicdn.com/images/360/phantom-4/draggable_360_v2/0_0.png" width="80" height="40" class="d-inline-block align-top" alt="">
+    <!-- 
+      AVAILABLE HEADER CLASSES
+
+      Default nav height: 96px
+      .header-md    = 70px nav height
+      .header-sm    = 60px nav height
+
+      .b-0    = remove bottom border (only with transparent use)
+      .sticky     = sticky header
+      .static     = static header
+      .dark     = dark header
+      .bottom     = header on bottom
+      
+      shadow-before-1 = shadow 1 header top
+      shadow-after-1  = shadow 1 header bottom
+      shadow-before-2 = shadow 2 header top
+      shadow-after-2  = shadow 2 header bottom
+      shadow-before-3 = shadow 3 header top
+      shadow-after-3  = shadow 3 header bottom
+
+      .clearfix   = required for mobile menu, do not remove!
+    -->
+    <div id="header" class="navbar-toggleable-md clearfix header-md transparent sticky b-0 disable-uppercase shadow-after-3">
+
+      <!-- TOP NAV -->
+      <header id="topNav">
+        <div class="container">
+
+          <!-- Mobile Menu Button -->
+          <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Logo -->
+          <a class="logo float-left" href="/">
+            <img src="https://asset1.djicdn.com/images/360/phantom-4/draggable_360_v2/0_0.png" alt="" />
+            <img src="https://asset1.djicdn.com/images/360/phantom-4/draggable_360_v2/0_0.png" alt="" />
           </a>
-          <a class="navbar-brand" href="/posts">DroneEye</a>
+
+
+
+          <!-- 
+            Top Nav 
+          -->
+          <div class="navbar-collapse collapse float-right nav-main-collapse">
+            <nav class="nav-main">
+
+              <!--
+                NOTE
+                
+                For a regular link, remove "dropdown" class from LI tag and "dropdown-toggle" class from the href.
+                Direct Link Example: 
+
+                <li>
+                  <a href="#">HOME</a>
+                </li>
+
+                + MENU EFFECTS
+                  .nav-animate-fadeIn
+                  .nav-animate-fadeInUp
+                  .nav-animate-bounceIn
+                  .nav-animate-bounceInUp
+                  .nav-animate-flipInX
+                  .nav-animate-flipInY
+                  .nav-animate-zoomIn
+                  .nav-animate-slideInUp
+
+                  .nav-hover-animate  = animate text on hover
+
+              -->
+              <ul id="topMain" class="nav nav-pills nav-main nav-hover-animate nav-animate-fadeIn">
+                <li class="button float-left"><!-- HOME -->
+                  <a href="/posts">
+                    DroneEye
+                  </a>
+                </li>
+                <% if current_user %>
+                  <li ><!-- MY FEED -->
+                    <a href="/myfeed">
+                      My Feed
+                    </a>
+                  </li>
+                  <li ><!-- DISCOVER -->
+                    <a href="/discover">
+                      Discover
+                    </a>
+                  </li>
+                  <li ><!-- DISCOVER -->
+                    <a href="/posts/new">
+                      New Post
+                    </a>
+                  </li>
+                  <li class="active">
+                    <a href="/didntitellyou">
+                      Don't Click!
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/users/<%= current_user.id %>/edit">
+                      <span class="glyphicon glyphicon-user"></span> Edit Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/logout">
+                      <span class="glyphicon glyphicon-log-in"></span> Logout
+                    </a>
+                  </li>
+                <% else %>
+                  <li>
+                    <a href="/signup">
+                      <span class="glyphicon glyphicon-user"></span> Sign Up
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/login">
+                      <span class="glyphicon glyphicon-log-in"></span> Login
+                    </a>
+                  </li>
+                <% end %>
+              </ul>
+
+            </nav>
+          </div>
+
         </div>
-          <% if current_user %>
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/didntitellyou">Don't Click!</a></li>
-              <li><a href="/myfeed">My Feed</a></li>
-              <li><a href="/discover">Discover</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-center">
-              <li><a href="/posts/new">New Post</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/users/<%= current_user.id %>/edit"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
-              <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-            </ul>
-          <% else %>
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/didntitellyou">Don't Click!</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-          <% end %>
-      </div>
-    </nav>
+      </header>
+      <!-- /Top Nav -->
+    </div>
 
     <% flash.each do |key, message|%>
-      <div class="alert alert-<%= key %> alert-dismissible" role="alert">
+      <div class="alert alert-<%= key %> alert-dismissible margin-up" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <%= message %>
       </div>
     <%end%>
 
+    <!-- OTHER PAGES CONTENT -->
     <%= yield %>
+
+
+    <!-- FOOTER -->
+    <footer id="footer">
+      <div class="container">
+
+        <div class="row">
+          
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+
+            <!-- Small Description -->
+            <p> Love of beauty is taste. Creation of beauty is art. <i>&ndash; <b>Ralph Waldo Emerson</b> &ndash;</i></p>
+
+            <hr />
+
+            <div class="row">
+              <div class="col-md-3 col-sm-2"></div>
+              <div class="col-md-6 col-sm-6 hidden-xs-down">
+
+                <!-- Social Icons -->
+                <div class="ml-50 clearfix">
+
+                  <p class="mb-10">Creator: Boris Danilin</p>
+                  <a href="https://www.facebook.com/boris.waka.7" class="social-icon social-icon-sm social-icon-transparent social-facebook float-left" data-toggle="tooltip" data-placement="top" title="Facebook">
+                    <i class="icon-facebook"></i>
+                    <i class="icon-facebook"></i>
+                  </a>
+
+                  <a href="https://www.instagram.com/boris_003/" class="social-icon social-icon-sm social-icon-transparent social-instagram float-left" data-toggle="tooltip" data-placement="top" title="Instagram">
+                    <i class="icon-instagram"></i>
+                    <i class="icon-instagram"></i>
+                  </a>
+
+                  <a href="https://vk.com/boris003" class="social-icon social-icon-sm social-icon-transparent social-vk float-left" data-toggle="tooltip" data-placement="top" title="vk">
+                    <i class="icon-vk"></i>
+                    <i class="icon-vk"></i>
+                  </a>
+
+                  <a href="https://www.linkedin.com/in/borisdanilin/" class="social-icon social-icon-sm social-icon-transparent social-linkedin float-left" data-toggle="tooltip" data-placement="top" title="Linkedin">
+                    <i class="icon-linkedin"></i>
+                    <i class="icon-linkedin"></i>
+                  </a>
+
+                </div>
+                <!-- /Social Icons -->
+
+              </div>
+              
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        <div class="container">
+          <ul class="list-inline inline-links mobile-block float-right m-0">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="https://github.com/boris003">Portfolio</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+
+          &copy; All Rights Reserved, Boris Danilin
+          <p> 目を閉じて参照し</p>
+        </div>
+      </div>
+    </footer>
+    <!-- /FOOTER -->
+
+  </div>
+  <!-- /wrapper -->
+
+
+  <!-- SCROLL TO TOP -->
+  <a href="#" id="toTop"></a>
+
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="inner">
+      <span class="loader"></span>
+    </div>
+  </div><!-- /PRELOADER -->
+
+
+  <!-- JAVASCRIPT FILES -->
+
+  <script type="text/javascript">var plugin_path = '/plugins/';</script>
+  <script type="text/javascript" src="/plugins/jquery/jquery-3.2.1.min.js"></script>
+
+  <script type="text/javascript" src="/js/scripts.js"></script>
+
+  <!-- REVOLUTION SLIDER -->
+  <script type="text/javascript" src="/plugins/slider.revolution.v5/js/jquery.themepunch.tools.min.js"></script>
+  <script type="text/javascript" src="/plugins/slider.revolution.v5/js/jquery.themepunch.revolution.min.js"></script>
+  <script type='text/javascript' src='/plugins/slider.revolution.v5/revolution-addons/slicey/js/revolution.addon.slicey.min.js?ver=1.0.0'></script>
+
+  <script type="text/javascript">
+    jQuery(document).ready(function() {
+      if(jQuery("#rev_slider_28_1").revolution == undefined){
+        revslider_showDoubleJqueryError("#rev_slider_28_1");
+      }else{
+        revapi28 = jQuery("#rev_slider_28_1").show().revolution({
+          sliderType:"standard",
+          jsFileLocation: plugin_path + "slider.revolution.v5/js/",
+          sliderLayout:"fullscreen",
+          dottedOverlay:"none",
+          delay:5500,
+          navigation: {
+            keyboardNavigation:"off",
+            keyboard_direction: "horizontal",
+            mouseScrollNavigation:"off",
+            mouseScrollReverse:"default",
+            onHoverStop:"off",
+            arrows: {
+              style:"uranus",
+              enable:true,
+              hide_onmobile:false,
+              hide_onleave:false,
+              tmp:'',
+              left: {
+                h_align:"left",
+                v_align:"center",
+                h_offset:20,
+                v_offset:0
+              },
+              right: {
+                h_align:"right",
+                v_align:"center",
+                h_offset:20,
+                v_offset:0
+              }
+            }
+            ,
+            bullets: {
+              enable:true,
+              hide_onmobile:false,
+              style:"hermes",
+              hide_onleave:false,
+              direction:"horizontal",
+              h_align:"center",
+              v_align:"bottom",
+              h_offset:0,
+              v_offset:20,
+              space:5,
+              tmp:''
+            }
+          },
+          responsiveLevels:[1240,1024,778,480],
+          visibilityLevels:[1240,1024,778,480],
+          gridwidth:[1240,1024,778,480],
+          gridheight:[868,768,960,720],
+          lazyType:"none",
+          shadow:0,
+          spinner:"off",
+          stopLoop:"off",
+          stopAfterLoops:-1,
+          stopAtSlide:-1,
+          shuffle:"off",
+          autoHeight:"off",
+          fullScreenAutoWidth:"off",
+          fullScreenAlignForce:"off",
+          fullScreenOffsetContainer: "",
+          fullScreenOffset: "",
+          hideThumbsOnMobile:"off",
+          hideSliderAtLimit:0,
+          hideCaptionAtLimit:0,
+          hideAllCaptionAtLilmit:0,
+          debugMode:false,
+          fallbacks: {
+            simplifyAll:"off",
+            nextSlideOnWindowFocus:"off",
+            disableFocusListener:false,
+          }
+        });
+      }
+
+              if(revapi28) revapi28.revSliderSlicey();
+    });
+  </script>
   </body>
 </html>

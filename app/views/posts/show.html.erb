@@ -1,16 +1,91 @@
-<div class="post"><h3> <%= @post.user.nickname %> </h3>
-  <h1><%= @post.title %> </h1>
-  <h2><%= @post.description %> </h2>
-  <img class="postImage" src= <%= @post.image.url %>>
-  Tags: 
-  <% @post.tags.each do |tag|%>
-    <li> <%= tag.name %> </li>
-  <% end %>
+<section>
+    <div class="container">
 
-  <div class="button"> <a href="/posts/<%= @post.id %>/edit"> Edit Post </a> </div>
+      <h1 class="blog-post-title"><a href="posts/<%=@post.id%>"><%= @post.title %></a></h1>
 
-  <br>
-  =============================
-  <br>
-  <div class="button"> <a href="/"> Back to My Feed </a> </div>
-</div>
+
+      <ul class="blog-post-info list-inline">
+        <li>
+          <a href="#">
+            <i class="fa fa-clock-o"></i> 
+            <span class="font-lato"><%=@post.created_at.strftime("%A, %b %d")%></span>
+          </a>
+        </li>
+        <li>
+          <a href="users/<%=@post.user_id%>">
+            <i class="fa fa-user"></i> 
+            <span class="font-lato"><%= @post.user.nickname %></span>
+          </a>
+        </li>
+        <li class="follow-button">
+          <%= form_tag "/users/subscribe", method: :post do %>
+            <input type="hidden" name="subscribed_to_id" value=<%="#{@post.user.id}"%>>
+            <button type="submit" class="btn btn-default btn-sm">Follow</button>
+          <%end%>
+        </li>
+      </ul>
+
+      <!-- OWL SLIDER -->
+        <a href="posts/<%=@post.id%>">
+          <img class="img-fluid" src=<%= @post.image.url %> alt="" />
+        </a>
+      <!-- /OWL SLIDER -->
+
+      <!-- description -->
+      <p class="dropcap"><%= @post.description %></p>
+      <!-- /description -->
+
+
+
+
+
+      <!-- TAGS -->
+      <% @post.tags.each do |tag| %>
+        <a class="tag" href="#">
+          <span class="txt"><%= tag.name %></span>
+        </a>
+      <% end %>
+      <!-- /TAGS -->
+     
+      <!-- COMMENTS -->
+      <div id="comments" class="comments">
+        <% if @post.comments.first %>
+          <h4 class="page-header mb-60 fs-20">
+            <span><%=@post.comments.count%></span> COMMENTS
+          </h4>
+          <% @post.comments.each do |comment| %>
+            <div class="comment-item">
+              <div class="media-body">
+                <h4 class="media-heading bold"><%= comment.user.nickname %></h4>
+                <%= comment.content %>
+              </div>
+            </div>
+          <%end%>
+        <% end %>
+
+      </div>
+
+      <div id="comments" class="comments">
+            <!-- Form -->
+            <%= form_tag "/posts/#{@post.id}/comment", method: :post do %>
+              <div class="row">
+                <div class="col-md-12">
+                  <label>COMMENT</label>
+                  <input type="text" name="content">
+                  <input type="hidden" name="post_id" value="#{@post.id}">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-3d btn-lg btn-reveal btn-black">Send</button>
+                </div>
+              </div>
+
+            <% end %>
+            <!-- /Form -->
+
+      </div>
+      <!-- /COMMENTS -->
+
+    </div>
+  </section>

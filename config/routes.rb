@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/' => 'users#landing'
+  get '/' => 'posts#landing'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
@@ -23,12 +23,14 @@ Rails.application.routes.draw do
   patch '/posts/:id' => 'posts#update'
   delete '/posts/:id' => 'posts#destroy'
   post '/posts/:id/comment' => 'posts#newcomment'
+  post '/posts/:id/vote' => 'posts#vote'
 
   get '/getout' => 'posts#getout'
   get '/didntitellyou' => 'posts#didntitellyou'
   get '/ohgod' => 'posts#ohgod'
 
   get '/about' => 'users#about'
+  get '/contact' => 'users#contact'
 
 
 end
