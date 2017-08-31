@@ -23,7 +23,7 @@
     <label for="bio">About me:</label>
     <input type="text" id="bio" name="bio" value="<%= @user.bio %>">
     <label>Interests:</label>
-    <p>Please check things that you are excited about, we will try to show you content based on your interests:</p>
+    <p>Please check things that you are excited about, we will try to show you content based on your interests: </p>
     <% @tags.each do |tag| %>
       <div><input type="checkbox" value="<%= tag.id %>" name="tag_ids[]"/>
       <label class="light" for="tag_ids[]"><%= tag.name %></label></div>
